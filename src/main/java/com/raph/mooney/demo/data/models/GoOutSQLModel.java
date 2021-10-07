@@ -4,22 +4,24 @@ import java.time.LocalDate;
 
 import com.raph.mooney.demo.data.entities.GoOutImpl;
 import com.raph.mooney.demo.domain.entities.GoOut;
+import javax.persistence.*;
 
-import org.springframework.data.annotation.Id;
-
-public class GoOutModel implements GoOut {
+@Entity
+@Table(name = "goouts")
+public class GoOutSQLModel implements GoOut {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private double cost;
     private String description;
     private int year;
     private int month;
     private int day;
 
-    public GoOutModel() {
+    public GoOutSQLModel() {
     }
 
-    public GoOutModel(double cost, String description, LocalDate date) {
+    public GoOutSQLModel(double cost, String description, LocalDate date) {
         this.cost = cost;
         this.description = description;
         this.year = date.getYear();
